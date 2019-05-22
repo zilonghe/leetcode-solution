@@ -1,4 +1,4 @@
-package totalSqrtNumber;
+package perfectSquares279;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
