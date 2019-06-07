@@ -1,4 +1,4 @@
-package 目标和;
+package 目标和494;
 
 
 import java.util.stream.IntStream;
