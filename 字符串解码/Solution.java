@@ -20,68 +20,50 @@ import java.util.Stack;
  * s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
  */
 class Solution {
-    private Stack<Character> operStack = new Stack<>();
-    private Stack<Character> charStack = new Stack<>();
+    private Stack<String> p = new Stack<>();
 
+    /**
+     * 将所有非']'的符号入栈
+     * 遇到']'时，把'['和']'之间的所有字符出栈记录
+     * 把'['出栈
+     * 把'['前的数字解析成整形
+     * 将计算好的字符串入栈
+     */
     public String decodeString(String s) {
         for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
             if (cur == ']') {
-                // pop the '['
-                operStack.pop();
-                // pop the repeat count
-                StringBuilder countSb = new StringBuilder();
-                while (!operStack.isEmpty() && Character.isDigit(operStack.peek())) {
-                    countSb.append(operStack.pop());
+                String tmp = "";
+                while (!"[".equals(p.peek())) {
+                    tmp = p.pop() + tmp;
                 }
-                int count = Integer.parseInt(countSb.reverse().toString());
-                List<Character> tmpList = new ArrayList<>();
-                while (charStack.peek() != '-') {
-                    tmpList.add(charStack.pop());
-                }
-                charStack.pop();
+                p.pop();
 
-                String s1 = multiString(count, tmpList);
-                for (int i1 = 0; i1 < s1.length(); i1++) {
-                    charStack.push(s1.charAt(i1));
+                String countString = "";
+                while (!p.isEmpty() && Character.isDigit(p.peek().charAt(0))) {
+                    countString = p.pop() + countString;
                 }
+                int count = Integer.parseInt(countString);
+
+                String ret = "";
+                for (int i1 = 0; i1 < count; i1++) {
+                    ret += tmp;
+                }
+                p.push(ret);
             } else {
-                if (cur == '[' || Character.isDigit(cur)) {
-                    operStack.push(cur);
-                    if (!Character.isDigit(cur)) {
-                        charStack.push('-');
-                    }
-                } else {
-                    charStack.push(cur);
-                }
+                p.push("" + cur);
             }
         }
-        StringBuilder builder = new StringBuilder(charStack.size());
-        for (Character character : charStack) {
-            builder.append(character);
+        String result = "";
+        while (!p.isEmpty()) {
+            result = p.pop() + result;
         }
-        return builder.toString();
+        return result;
     }
-
-    private String multiString(int count, List<Character> characters) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < count; i++) {
-            result.append(getReverseStringRepresentation(characters));
-        }
-        return result.toString();
-    }
-
-    private String getReverseStringRepresentation(List<Character> list) {
-        StringBuilder builder = new StringBuilder(list.size());
-        for (int i = list.size() - 1; i >= 0; i--) {
-            builder.append(list.get(i));
-        }
-        return builder.toString();
-    }
-
 //    public static void main(String[] args) {
 //        System.out.println(new Solution().decodeString("3[a]2[bc]"));
 //        System.out.println(new Solution().decodeString("3[a2[c]]"));
 //        System.out.println(new Solution().decodeString("2[abc]3[cd]ef"));
+//        System.out.println(new Solution().decodeString("10[abc]"));
 //    }
 }
