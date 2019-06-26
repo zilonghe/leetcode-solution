@@ -1,4 +1,4 @@
-package 每日温度739;
+package 队列和栈.每日温度739;
 
 import java.util.Stack;
 

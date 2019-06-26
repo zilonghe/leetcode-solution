@@ -1,4 +1,4 @@
-package 用栈实现队列232;
+package 队列和栈.用栈实现队列232;
 
 import java.util.Stack;
 

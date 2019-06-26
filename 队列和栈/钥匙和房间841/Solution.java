@@ -1,4 +1,4 @@
-package 钥匙和房间841;
+package 队列和栈.钥匙和房间841;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;

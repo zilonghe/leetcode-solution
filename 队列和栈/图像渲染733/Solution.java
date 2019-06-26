@@ -1,4 +1,4 @@
-package 图像渲染733;
+package 队列和栈.图像渲染733;
 
 import java.util.Arrays;
 import java.util.HashSet;

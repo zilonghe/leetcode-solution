@@ -1,4 +1,4 @@
-package 目标和494;
+package 队列和栈.目标和494;
 
 
 import java.util.stream.IntStream;

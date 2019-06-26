@@ -1,4 +1,4 @@
-package 用队列实现栈225;
+package 队列和栈.用队列实现栈225;
 
 import java.util.ArrayList;
 import java.util.List;

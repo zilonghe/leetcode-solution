@@ -1,4 +1,4 @@
-package 二叉树的中序遍历94;
+package 队列和栈.二叉树的中序遍历94;
 
 import java.util.*;
 /*

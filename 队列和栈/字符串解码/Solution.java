@@ -1,7 +1,5 @@
-package 字符串解码;
+package 队列和栈.字符串解码;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 /**
