@@ -14,45 +14,27 @@ import 链表.ListNode;
  */
 public class Solution {
     public ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
         ListNode prev = null;
-        while (head.next != null) {
-            if (prev == null) {
-                ListNode tmp = head.next;
-                head.next = tmp.next;
-                tmp.next = head;
-                prev = tmp;
-            } else {
-                ListNode tmp = head.next;
-                head.next = tmp.next;
-                tmp.next = prev;
-                prev = tmp;
-            }
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
         }
         return prev;
     }
 
-    public ListNode reverseListRecursively(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-        ListNode result = new ListNode(-1);
-        func(head, result);
-        return result.next;
+    public ListNode reverseList2(ListNode head) {
+        return reverse(head, null);
     }
 
-    private ListNode func(ListNode node, ListNode reverseHead) {
-        if (node.next == null) {
-            reverseHead.next = node;
-            node.next = null;
-            return node;
-        } else {
-            ListNode reverseTail = func(node.next, reverseHead);
-            reverseTail.next = node;
-            node.next = null;
-            return node;
+    private ListNode reverse(ListNode cur, ListNode pre) {
+        if (cur == null) {
+            return pre;
         }
+        ListNode next = cur.next;
+        cur.next = pre;
+        return reverse(next, cur);
     }
 }
